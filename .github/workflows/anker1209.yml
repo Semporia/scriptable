@@ -1,16 +1,16 @@
-name: anker1209-sync
+name: Scriptable-sync
 on:
   push:
       branches:
         - main
   schedule:
-    # 格林威治时间 (GMT) 每日01时开始执行
+    #  格林威治时间 (GMT) 每日01时开始执行
     - cron: '0 1 * * *'
   workflow_dispatch:
   watch:
     types: started
   repository_dispatch:
-    types: sync-anker1209/Scriptable
+    types: sync-Scriptable/Scriptable
 jobs:
   repo-sync:
     env:
@@ -22,11 +22,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync anker1209/Scriptable
+      - name: sync Scriptable/Scriptable
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/anker1209/Scriptable.git"
+          source_repo: "https://github.com/Scriptable/Scriptable.git"
           source_branch: "main"
-          destination_branch: "anker1209"
+          destination_branch: "Scriptable"
           github_token: ${{ secrets.PAT }}
