@@ -4,13 +4,13 @@ on:
       branches:
         - main
   schedule:
-    #  每三小时的01分开始执行
-    - cron: '1 */3 * * *'
+    # 格林威治时间 (GMT) 每日01时开始执行
+    - cron: '0 1 * * *'
   workflow_dispatch:
   watch:
     types: started
   repository_dispatch:
-    types: sync-anker1209
+    types: sync-anker1209/Scriptable
 jobs:
   repo-sync:
     env:
@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync anker1209
+      - name: sync anker1209/Scriptable
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
